@@ -1,0 +1,36 @@
+
+dotnet new webapi -n EAudit
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+更新EF
+dotnet tool update --global dotnet-ef
+
+產生Models
+dotnet ef dbcontext scaffold "Server=localhost;Database=EAudit;user=sa;password=sasa" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+加入連線 Startup.cs
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<EAuditContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+}
+
+加入連線 appsettings.json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Initial Catalog=EAudit;User Id=sa;Password=sasa"
+  }
+}
+
+與奕辰搭配修改設定
+launchSettings.json
+"applicationUrl": "https://172.18.40.4:5001;http://172.18.40.4:5000"
+
+Startup.cs
+//app.UseHttpsRedirection();註解這行
+
+加入資料表 MEMGENINF、DEPGENINF、ROLGENINF
+dotnet ef dbcontext scaffold --force "Server=localhost;Database=EAudit;user=sa;password=sasa" Microsoft.EntityFrameworkCore.SqlServer -o Models
