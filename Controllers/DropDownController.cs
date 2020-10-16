@@ -21,19 +21,19 @@ namespace EAudit.Controllers
         }
 
         [HttpGet("Penaltys")]
-        public async Task<ActionResult<IEnumerable<AuditPenalty>>> GetAuditPenaltys()
+        public async Task<ActionResult<IEnumerable<DropDownData.AuditPenalty>>> GetAuditPenaltys()
         {
             return await _context.AuditPenaltys.ToListAsync();
         }
 
         [HttpGet("Sources")]
-        public async Task<ActionResult<IEnumerable<AuditSource>>> GetAuditSources()
+        public async Task<ActionResult<IEnumerable<DropDownData.AuditSource>>> GetAuditSources()
         {
             return await _context.AuditSources.ToListAsync();
         }
 
         [HttpGet("Violations")]
-        public async Task<ActionResult<IEnumerable<AuditViolation>>> GetAuditViolations()
+        public async Task<ActionResult<IEnumerable<DropDownData.AuditViolation>>> GetAuditViolations()
         {
             return await _context.AuditViolations.ToListAsync();
         }
