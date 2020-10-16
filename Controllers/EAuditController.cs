@@ -128,8 +128,8 @@ namespace EAudit.Controllers
             _context.AuditLineAlls.Add(auditLineAll);
             await _context.SaveChangesAsync();
 
-            return Ok("Successful");
-            // return CreatedAtAction("PostAuditDetail", new { id = auditHeaderAll.HeaderId }, auditHeaderAll);
+            // return Ok("Successful");
+            return CreatedAtAction("PostAuditDetail", new { id = auditLineAll.LineId }, auditLineAll);
         }
 
         // DELETE: api/GetData/5

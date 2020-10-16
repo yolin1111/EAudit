@@ -28,6 +28,7 @@ namespace EAudit.Models
         public virtual DbSet<DropDownData.AuditPenalty> AuditPenaltys { get; set; }
         public virtual DbSet<DropDownData.AuditSource> AuditSources { get; set; }
         public virtual DbSet<DropDownData.AuditViolation> AuditViolations { get; set; }
+        public virtual DbSet<AuditAttchment> AuditAttchments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
