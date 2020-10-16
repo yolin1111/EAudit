@@ -116,9 +116,9 @@ namespace EAudit.Controllers
             _context.AuditHeaderAlls.Add(auditHeaderAll);
             await _context.SaveChangesAsync();
 
-            //FIXME:不知道為什麼這行不行，但是GetDataController.cs卻可以
-            // return CreatedAtAction("GetAuditHeaderAll", new { id = auditHeaderAll.HeaderId }, auditHeaderAll);
-            return Ok("Successful");
+
+            // return Ok("Successful");
+            return CreatedAtAction("PostAuditMaster", new { id = auditHeaderAll.HeaderId }, auditHeaderAll);
         }
         // https://172.18.40.4:5000/api/Create/D
         // 新增 AuditLineAll
@@ -129,6 +129,7 @@ namespace EAudit.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Successful");
+            // return CreatedAtAction("PostAuditDetail", new { id = auditHeaderAll.HeaderId }, auditHeaderAll);
         }
 
         // DELETE: api/GetData/5

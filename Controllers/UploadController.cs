@@ -12,6 +12,58 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EAudit.Controllers
 {
+    //test
+    [Route("v2[controller]")]
+    [ApiController]
+    public class UploadtestController : ControllerBase
+    {
+        [HttpPost]
+        //TODO:傳入案件編號、機關代碼、稽查項目等
+        //TODO:研究如何寫入資料庫，LineId、FileName、FilePath
+        public async Task<IActionResult> UploadFile(int lineId, string FileName, string FilePath, List<IFormFile> files, string id)
+        {
+            string _folder = Environment.CurrentDirectory + "\\file";
+            var size = files.Sum(f => f.Length);
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    var path = $@"{_folder}\{file.FileName}";
+                    var path_checked = CheckFileExistRename1(path);
+                    using (var stream = new FileStream(path_checked, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                        await stream.FlushAsync();
+                    };
+
+                }
+            }
+
+            return Ok(new { count = files.Count, size, aa = id });
+        }
+
+        private string CheckFileExistRename1(string filePath, int seq = 0)
+        {
+            string checkPath = filePath;
+            seq++;
+            if (System.IO.File.Exists(checkPath))
+            {
+                string ext = Path.GetExtension(checkPath);
+                string fileName = Path.GetFileNameWithoutExtension(checkPath);
+                string saveFolder = Path.GetDirectoryName(checkPath);
+                if (seq == 1)
+                    checkPath = Path.Combine(saveFolder, fileName + "(" + seq + ")" + ext);
+                else
+                    checkPath = Path.Combine(saveFolder, fileName.Replace("(" + (seq - 1) + ")", "(" + seq + ")") + ext);
+                string backPath = CheckFileExistRename1(checkPath, seq);
+                return backPath;
+            }
+            else
+                return checkPath;
+
+        }
+    }
+    //test
 
 
     [Route("v1/[controller]")]
