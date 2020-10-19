@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,7 @@ namespace EAudit.Models
         public string Name { get; set; }
         public string Path { get; set; }
         [Column(TypeName = "datetime")]
-        public string CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
         public string CreatedBy { get; set; }
     }
 }

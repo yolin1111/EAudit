@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "klApM/vIGYnrSlRHbzDgdmyA3WFBVguD41czXQcog64W++updBSmZwlAot3tAy99RebZ1orAJAwAM62NVbrWwg==",
+  "dgSpecHash": "YynD9h+zWt8kgJTxBwPS5XOeVgfdGVHVcsLb+4eS3b7PIq4e9BU77jtPwHIKUk3+WbESmN25/HdL1QXJvouWTA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\EAudit\\EAudit.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\tatung\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\microsoft.aspnetcore.authorization\\1.0.3\\microsoft.aspnetcore.authorization.1.0.3.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\1.0.4\\microsoft.aspnetcore.hosting.abstractions.1.0.4.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\1.0.4\\microsoft.aspnetcore.hosting.server.abstractions.1.0.4.nupkg.sha512",

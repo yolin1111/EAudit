@@ -163,3 +163,4 @@ D:\Projects\EAudit\bin\Debug\netcoreapp3.1\NSwag.Core.dll
 D:\Projects\EAudit\bin\Debug\netcoreapp3.1\NSwag.Generation.dll
 D:\Projects\EAudit\bin\Debug\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
 D:\Projects\EAudit\obj\Debug\netcoreapp3.1\EAudit.MvcApplicationPartsAssemblyInfo.cs
+D:\Projects\EAudit\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
