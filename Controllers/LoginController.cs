@@ -12,54 +12,23 @@ namespace EAudit.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        // private readonly AuditContext _context;
+        private readonly AuditContext _context;
 
-        // public LoginController(AuditContext context)
-        // {
-        //     _context = context;
-        // }
-
-        private readonly JwtHelpers jwt;
-
-        public LoginController(JwtHelpers jwt)
+        public LoginController(AuditContext context)
         {
-            this.jwt = jwt;
+            _context = context;
         }
-        //TODO: 登入功能需要呼叫webService
-        // [HttpPost]
-        // public async Task<ActionResult<Org>> Post1([FromBody] LoginViewModel login)
-        // {
-        //     var LoginData = await _context.Orgs.FirstOrDefaultAsync(x => x.LoginId == login.UserName);
-        //     if (login.PassWord == "1234")
-        //     {
-        //         return Ok(LoginData);
-        //     }
-        //     return NotFound();
 
-        // }
-
-
-
-        [AllowAnonymous]
+        // TODO: 登入功能需要呼叫webService
         [HttpPost]
-        public ActionResult<string> SignIn(LoginViewModel login)
+        public async Task<ActionResult<Org>> Post1([FromBody] LoginViewModel login)
         {
-            if (ValidateUser(login))
-            {
-                return jwt.GenerateToken(login.UserName);
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
-        private bool ValidateUser(LoginViewModel login)
-        {
+            var LoginData = await _context.Orgs.FirstOrDefaultAsync(x => x.LoginId == login.UserName);
             if (login.PassWord == "1234")
             {
-                return true; // TODO
+                return Ok(LoginData);
             }
-            return false;
+            return NotFound();
 
         }
     }

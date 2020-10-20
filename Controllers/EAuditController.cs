@@ -23,19 +23,19 @@ namespace EAudit.Controllers
         // GET: api/GetData
         // http://172.18.40.4:5000/api/GetData
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AuditHeaderAll>>> GetAuditHeaderAlls()
+        public async Task<ActionResult<IEnumerable<AuditHeaderView>>> GetAuditHeaderAlls()
         {
             // return await _context.AuditHeaderAlls.ToListAsync();
-            return await _context.AuditHeaderAlls.Include(a => a.AuditLineAlls).ToListAsync();
+            return await _context.AuditHeaderViews.Include(a => a.AuditLineViews).ToListAsync();
         }
 
         // GET: api/GetData/5
         // http://172.18.40.4:5000/api/GetData/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AuditHeaderAll>> GetAuditHeaderAll(int id)
+        public async Task<ActionResult<AuditHeaderView>> GetAuditHeaderAll(int id)
         {
             // var auditHeaderAll = await _context.AuditHeaderAlls.FindAsync(id);
-            var AuditData = await _context.AuditHeaderAlls.Include(a => a.AuditLineAlls).FirstOrDefaultAsync(x => x.HeaderId == id);
+            var AuditData = await _context.AuditHeaderViews.Include(a => a.AuditLineViews).FirstOrDefaultAsync(x => x.HeaderId == id);
 
             if (AuditData == null)
             {
@@ -48,10 +48,10 @@ namespace EAudit.Controllers
         // GET: api/GetData/AGAA
         // http://172.18.40.4:5000/api/GetData/orgID/ABAA
         [HttpGet("OrgID/{Org}")]
-        public async Task<ActionResult<AuditHeaderAll>> GetAuditOrg(string Org)
+        public async Task<ActionResult<AuditHeaderView>> GetAuditOrg(string Org)
         {
             // var auditHeaderAll = await _context.AuditHeaderAlls.FindAsync(id);
-            var AuditData = await _context.AuditHeaderAlls.Include(a => a.AuditLineAlls).FirstOrDefaultAsync(x => x.ApplyOrg == Org);
+            var AuditData = await _context.AuditHeaderViews.Include(a => a.AuditLineViews).FirstOrDefaultAsync(x => x.ApplyOrg == Org);
 
             if (AuditData == null)
             {

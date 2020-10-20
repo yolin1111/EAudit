@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JwtAuthDemo.Helpers
 {
@@ -70,6 +71,7 @@ namespace JwtAuthDemo.Helpers
             var serializeToken = tokenHandler.WriteToken(securityToken);
 
             return serializeToken;
+
         }
     }
 }

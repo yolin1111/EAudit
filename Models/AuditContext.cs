@@ -20,6 +20,8 @@ namespace EAudit.Models
 
         public virtual DbSet<AuditHeaderAll> AuditHeaderAlls { get; set; }
         public virtual DbSet<AuditLineAll> AuditLineAlls { get; set; }
+        public virtual DbSet<AuditHeaderView> AuditHeaderViews { get; set; }
+        public virtual DbSet<AuditLineView> AuditLineViews { get; set; }
 
         // public virtual DbSet<AuditPenalty> AuditPenaltys { get; set; }
         // public virtual DbSet<AuditSource> AuditSources { get; set; }
