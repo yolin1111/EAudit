@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EAudit.Models;
+using Microsoft.Data.SqlClient;
 
 namespace EAudit.Controllers
 {
@@ -132,6 +133,11 @@ namespace EAudit.Controllers
             return CreatedAtAction("PostAuditDetail", new { id = auditLineAll.LineId }, auditLineAll);
         }
 
+        //TODO:GetSEQ
+
+
+
+
         // DELETE: api/GetData/5
         [HttpDelete("M/{id}")]
         public async Task<ActionResult<AuditHeaderAll>> DeleteAuditHeaderAll(int id)
@@ -167,5 +173,26 @@ namespace EAudit.Controllers
         {
             return _context.AuditHeaderAlls.Any(e => e.HeaderId == id);
         }
+
+        // //TODO:測試中
+        // public class SEQ
+        // {
+        //     public string ApplyOrgID { get; set; }
+        //     public string ApplyAuditItem { get; set; }
+
+        // }
+        // [HttpPost("SEQ")]
+        // public void PostSEQ(SEQ seq)
+        // {
+        //     // var sql = "ApplySEQ @usuario, @OrgID, @AudtiItem";
+        //     // string[] param = new[] {
+        //     // _context.Database.ExecuteSqlCommand(
+        //     //     sql,
+        //     //     (new SqlParameter("@OrgID", seq.ApplyOrgID,
+        //     //     new SqlParameter("@AudtiItem", seq.ApplyAuditItem));
+        //     // // return seq;
+        //     var posts = _context
+        // }
+
     }
 }

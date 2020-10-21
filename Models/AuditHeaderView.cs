@@ -21,7 +21,7 @@ namespace EAudit.Models
         public string AuditItem { get; set; }
         public string AuditItemName { get; set; }
         public string ApplyOrg { get; set; }
-        public string OrgName { get; set; }
+        public string ApplyOrgName { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime ApplyDate { get; set; }
         public string ApplyPerson { get; set; }
