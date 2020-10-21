@@ -31,6 +31,8 @@ namespace EAudit.Models
         public virtual DbSet<DropDownData.AuditSource> AuditSources { get; set; }
         public virtual DbSet<DropDownData.AuditViolation> AuditViolations { get; set; }
         public virtual DbSet<AuditAttchment> AuditAttchments { get; set; }
+        public virtual DbSet<GetSEQ> GetSEQs { get; set; }
+        public virtual DbSet<GetSEQResult> GetSEQResults { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,6 +47,8 @@ namespace EAudit.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<GetSEQ>().HasNoKey();
+            modelBuilder.Entity<GetSEQResult>().HasNoKey();
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

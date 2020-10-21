@@ -175,24 +175,14 @@ namespace EAudit.Controllers
         }
 
         // //TODO:測試中
-        // public class SEQ
-        // {
-        //     public string ApplyOrgID { get; set; }
-        //     public string ApplyAuditItem { get; set; }
+        [HttpPost("SEQ")]
+        public async Task<IActionResult> PostSEQ(GetSEQ seq)
+        {
+            // var aa = await _context.GetSEQs.FromSqlRaw("EXECUTE GetSEQ {0} ,{1}", seq.ApplyOrgID, seq.ApplyAuditItem).ToListAsync();
+            var aa = await _context.GetSEQResults.FromSqlInterpolated($"EXECUTE GetSEQ {seq.ApplyOrgID} ,{seq.ApplyAuditItem}").ToListAsync();
+            return Ok(aa);
 
-        // }
-        // [HttpPost("SEQ")]
-        // public void PostSEQ(SEQ seq)
-        // {
-        //     // var sql = "ApplySEQ @usuario, @OrgID, @AudtiItem";
-        //     // string[] param = new[] {
-        //     // _context.Database.ExecuteSqlCommand(
-        //     //     sql,
-        //     //     (new SqlParameter("@OrgID", seq.ApplyOrgID,
-        //     //     new SqlParameter("@AudtiItem", seq.ApplyAuditItem));
-        //     // // return seq;
-        //     var posts = _context
-        // }
+        }
 
     }
 }
