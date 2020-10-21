@@ -133,8 +133,12 @@ namespace EAudit.Controllers
             return CreatedAtAction("PostAuditDetail", new { id = auditLineAll.LineId }, auditLineAll);
         }
 
-        //TODO:GetSEQ
-
+        [HttpPost("SEQ")]
+        public async Task<IActionResult> PostSEQ(GetSEQ seq)
+        {
+            var CaseLineId = await _context.GetSEQResults.FromSqlInterpolated($"EXECUTE GetSEQ {seq.ApplyOrgID} ,{seq.ApplyAuditItem}").ToListAsync();
+            return Ok(CaseLineId);
+        }
 
 
 
@@ -175,14 +179,7 @@ namespace EAudit.Controllers
         }
 
         // //TODO:測試中
-        [HttpPost("SEQ")]
-        public async Task<IActionResult> PostSEQ(GetSEQ seq)
-        {
-            // var aa = await _context.GetSEQs.FromSqlRaw("EXECUTE GetSEQ {0} ,{1}", seq.ApplyOrgID, seq.ApplyAuditItem).ToListAsync();
-            var aa = await _context.GetSEQResults.FromSqlInterpolated($"EXECUTE GetSEQ {seq.ApplyOrgID} ,{seq.ApplyAuditItem}").ToListAsync();
-            return Ok(aa);
 
-        }
 
     }
 }
