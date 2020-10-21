@@ -31,5 +31,15 @@ namespace EAudit.Models
             public string ViolationCode { get; set; }
             public string ViolationStatus { get; set; }
         }
+        [Table("AuditItemViews")]
+        public class AuditItemView
+        {
+            public string OrgID { get; set; }
+            public string OrgName { get; set; }
+            public string AuditItemCode { get; set; }
+            public string AuditItemName { get; set; }
+
+        }
+
     }
 }

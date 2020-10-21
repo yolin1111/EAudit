@@ -49,17 +49,18 @@ namespace EAudit.Controllers
         // GET: api/GetData/AGAA
         // http://172.18.40.4:5000/api/GetData/orgID/ABAA
         [HttpGet("OrgID/{Org}")]
-        public async Task<ActionResult<AuditHeaderView>> GetAuditOrg(string Org)
+        public async Task<IActionResult> GetAuditOrg(string Org)
         {
             // var auditHeaderAll = await _context.AuditHeaderAlls.FindAsync(id);
-            var AuditData = await _context.AuditHeaderViews.Include(a => a.AuditLineViews).FirstOrDefaultAsync(x => x.ApplyOrg == Org);
+            // var AuditData = await _context.AuditHeaderViews.Include(a => a.AuditLineViews).FirstOrDefaultAsync(x => x.ApplyOrg == Org);
+            var AuditData = await _context.AuditHeaderViews.Where(a => a.ApplyOrg == Org).Include(b => b.AuditLineViews).ToListAsync();
 
             if (AuditData == null)
             {
                 return NotFound();
             }
 
-            return AuditData;
+            return Ok(AuditData);
         }
 
         // PUT: api/GetData/5
@@ -177,9 +178,5 @@ namespace EAudit.Controllers
         {
             return _context.AuditHeaderAlls.Any(e => e.HeaderId == id);
         }
-
-        // //TODO:測試中
-
-
     }
 }

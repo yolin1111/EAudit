@@ -38,5 +38,17 @@ namespace EAudit.Controllers
             return await _context.AuditViolations.ToListAsync();
         }
 
+        [HttpGet("AuditItems")]
+        public async Task<ActionResult<IEnumerable<DropDownData.AuditItemView>>> GetAuditItem()
+        {
+            return await _context.GetItemViews.ToListAsync();
+        }
+
+        [HttpGet("AuditItems/{OrgID}")]
+        public async Task<ActionResult<IEnumerable<DropDownData.AuditItemView>>> GetAuditItem(string OrgID)
+        {
+            return await _context.GetItemViews.Where(a => a.OrgID == OrgID).ToListAsync();
+        }
+
     }
 }
