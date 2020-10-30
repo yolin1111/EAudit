@@ -208,3 +208,7 @@ D
 
 --"applicationUrl": "https://172.18.40.4:5001;http://172.18.40.4:5000",
 --"applicationUrl": "https://localhost:5001;http://localhost:5000",
+
+SELECT H.HeaderId,H.ApplyOrg , L.* FROM AuditHeaderViews H
+LEFT JOIN AuditLineViews L ON H.HeaderId = L.HeaderId
+WHERE ApplyOrg = 'AJAA'

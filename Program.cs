@@ -20,7 +20,8 @@ namespace EAudit
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                       .UseUrls("http://172.25.144.129:8080");
                 });
     }
 }

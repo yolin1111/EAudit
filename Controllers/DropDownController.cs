@@ -20,6 +20,7 @@ namespace EAudit.Controllers
             _context = context;
         }
 
+        //20201027 沒有使用改寫於前端
         [HttpGet("Penaltys")]
         public async Task<ActionResult<IEnumerable<DropDownData.AuditPenalty>>> GetAuditPenaltys()
         {

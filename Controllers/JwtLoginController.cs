@@ -35,6 +35,22 @@ namespace EAudit.Controllers
                 return BadRequest();
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("test")]
+        public ActionResult<string> SignIn1(JwtLoginViewModel login)
+        {
+            if (ValidateUser(login))
+            {
+                return Ok(new { User = login.UserName, token = jwt.GenerateToken(login.UserName, 30) });
+                // return new ContentResult() { Content = jwt.GenerateToken(login.UserName) };
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         private bool ValidateUser(JwtLoginViewModel login)
         {
             if (login.PassWord == "1234")

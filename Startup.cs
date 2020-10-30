@@ -40,7 +40,8 @@ namespace EAudit
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("http://172.18.40.41")
+                    // builder.WithOrigins("http://172.18.40.41", "http://172.25.144.129/")
+                    builder.WithOrigins("*")
                         .SetIsOriginAllowedToAllowWildcardSubdomains()
                         .AllowAnyHeader()
                         .AllowAnyMethod();

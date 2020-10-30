@@ -35,6 +35,8 @@ namespace EAudit.Models
         public virtual DbSet<GetSEQResult> GetSEQResults { get; set; }
         public virtual DbSet<DropDownData.AuditItemView> GetItemViews { get; set; }
 
+        public virtual DbSet<TestViewModel> TestViewModels { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

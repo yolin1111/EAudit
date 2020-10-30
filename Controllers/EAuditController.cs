@@ -63,28 +63,18 @@ namespace EAudit.Controllers
             return Ok(AuditData);
         }
 
-        // PUT: api/GetData/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuditHeaderAll(int id, AuditHeaderAll auditHeaderAll)
+        [HttpPut("M/{id}")]
+        public async Task<IActionResult> PutAuditHeader(int id, AuditHeaderAll auditHeaderAll)
         {
             if (id != auditHeaderAll.HeaderId)
             {
                 return BadRequest();
             }
-
             _context.Entry(auditHeaderAll).State = EntityState.Modified;
-            if (auditHeaderAll.AuditLineAlls != null)
-            {
-                foreach (object item in auditHeaderAll.AuditLineAlls)
-                {
-                    _context.Entry(item).State = EntityState.Modified;
-                }
-            }
             try
             {
                 await _context.SaveChangesAsync();
+                return Ok(auditHeaderAll);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -97,9 +87,67 @@ namespace EAudit.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
         }
+        [HttpPut("D/{id}")]
+        public async Task<IActionResult> PutAuditLine(int id, AuditLineAll auditLineAll)
+        {
+            if (id != auditLineAll.LineId)
+            {
+                return BadRequest();
+            }
+            _context.Entry(auditLineAll).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok(auditLineAll);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AuditHeaderAllExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> PutAuditHeaderAll(int id, AuditHeaderAll auditHeaderAll)
+        // {
+        //     if (id != auditHeaderAll.HeaderId)
+        //     {
+        //         return BadRequest();
+        //     }
+
+        //     _context.Entry(auditHeaderAll).State = EntityState.Modified;
+        //     if (auditHeaderAll.AuditLineAlls != null)
+        //     {
+        //         foreach (object item in auditHeaderAll.AuditLineAlls)
+        //         {
+        //             _context.Entry(item).State = EntityState.Modified;
+        //         }
+        //     }
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //         return Ok("OK");
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!AuditHeaderAllExists(id))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
+
+
+        // }
 
         // POST: api/GetData
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -140,7 +188,6 @@ namespace EAudit.Controllers
             var CaseLineId = await _context.GetSEQResults.FromSqlInterpolated($"EXECUTE GetSEQ {seq.ApplyOrgID} ,{seq.ApplyAuditItem}").ToListAsync();
             return Ok(CaseLineId);
         }
-
 
 
         // DELETE: api/GetData/5

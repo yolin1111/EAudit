@@ -19,17 +19,24 @@ namespace EAudit.Controllers
             _context = context;
         }
 
-        // TODO: 登入功能需要呼叫webService
         [HttpPost]
         public async Task<ActionResult<Org>> Post1([FromBody] LoginViewModel login)
         {
             var LoginData = await _context.Orgs.FirstOrDefaultAsync(x => x.LoginId == login.UserName);
-            if (login.PassWord == "1234")
+            if (ValidateUser(login))
             {
                 return Ok(LoginData);
             }
             return NotFound();
 
+        }
+        private bool ValidateUser(LoginViewModel login)
+        {
+            if (login.PassWord == "1234")
+            {
+                return true; //TODO: 登入功能需要呼叫webService
+            }
+            return false;
         }
     }
 
