@@ -11,27 +11,27 @@ namespace EAudit.Controllers
 {
     [Route("v1/[controller]")]
     [ApiController]
-    public class FlowTestController : ControllerBase
+    public class FlowTest2Controller : ControllerBase
     {
         private readonly AuditContext _context;
 
-        public FlowTestController(AuditContext context)
+        public FlowTest2Controller(AuditContext context)
         {
             _context = context;
         }
 
         [HttpPost]
-        public async Task<ActionResult<TestFlow.TestViewModel>> Post1(TestFlow.TestViewModel testViewModels)
+        public async Task<ActionResult<TestFlow.TestViewModel2>> Post2(TestFlow.TestViewModel2 testViewModels)
         {
-            _context.TestViewModels.Add(testViewModels);
+            _context.TestViewModels2.Add(testViewModels);
             await _context.SaveChangesAsync();
             return Ok("Successful");
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TestFlow.TestViewModel>>> Get1()
+        public async Task<ActionResult<IEnumerable<TestFlow.TestViewModel2>>> Get2()
         {
             // return await _context.AuditHeaderAlls.ToListAsync();
-            return await _context.TestViewModels.ToListAsync();
+            return await _context.TestViewModels2.ToListAsync();
         }
     }
 }

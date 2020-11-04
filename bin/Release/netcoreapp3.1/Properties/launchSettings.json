@@ -21,10 +21,28 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl": "https://172.25.144.129:8081;http://172.25.144.129:8080",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    }
+  },
+  "EAuditPord": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "launchUrl": "weatherforecast",
+    "applicationUrl": "https://172.25.144.129:8081;http://172.25.144.129:8080",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": ""
+    }
+  },
+  "EAuditDEV": {
+    "commandName": "Project",
+    "launchBrowser": true,
+    "launchUrl": "weatherforecast",
+    "applicationUrl": "https://localhost:5001;http://localhost:5000",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": ""
     }
   }
 }
