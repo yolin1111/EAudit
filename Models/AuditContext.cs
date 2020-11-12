@@ -31,6 +31,7 @@ namespace EAudit.Models
         public virtual DbSet<DropDownData.AuditSource> AuditSources { get; set; }
         public virtual DbSet<DropDownData.AuditViolation> AuditViolations { get; set; }
         public virtual DbSet<AuditAttchment> AuditAttchments { get; set; }
+        public virtual DbSet<AuditLineAttView> AuditLineAttViews { get; set; }
         public virtual DbSet<GetSEQ> GetSEQs { get; set; }
         public virtual DbSet<GetSEQResult> GetSEQResults { get; set; }
         public virtual DbSet<DropDownData.AuditItemView> GetItemViews { get; set; }

@@ -16,15 +16,30 @@ namespace EAudit
             CreateHostBuilder(args).Build().Run();
         }
 
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //正式區
-                    // webBuilder.UseStartup<Startup>()
+                    // var _env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                    // Console.WriteLine("===========目前環境===========");
+                    // Console.WriteLine(_env);
+                    // Console.WriteLine("===========目前環境===========");
+                    // if (_env == "Development")
+                    // {
+                    //     webBuilder.UseStartup<Startup>();
+                    // }
+                    // if (_env == "Production")
+                    // {
+                    //     webBuilder.UseStartup<Startup>()
                     //    .UseUrls("http://172.25.144.129:8080");
+                    // }
+
+                    //正式區
+                    webBuilder.UseStartup<Startup>()
+                       .UseUrls("http://172.25.144.129:8080");
                     //開發區
-                    webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseStartup<Startup>();
                 });
     }
 }

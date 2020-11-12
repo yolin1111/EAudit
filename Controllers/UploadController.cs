@@ -10,6 +10,8 @@ using EAudit.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EAudit.Controllers
 {
@@ -18,21 +20,52 @@ namespace EAudit.Controllers
     [ApiController]
     public class UploadController : ControllerBase
     {
+        // private IConfiguration _configuration;
+        // public UploadController(IConfiguration configuration)
+        // {
+        //     _configuration = configuration;
+        // }
+
         private readonly AuditContext _context;
         public UploadController(AuditContext context)
         {
             _context = context;
         }
-        [HttpPost]
-        public async Task<IActionResult> UploadFile(List<IFormFile> files, string id)
+
+        [HttpGet("{id}")]
+        // public async Task<ActionResult<AuditLineAttView>> GetAuditLineAtt(int id)
+        public async Task<ActionResult<IEnumerable<AuditLineAttView>>> GetAuditLineAtt(int id)
         {
-            string _folder = Environment.CurrentDirectory + "\\file";
+            // var AuditLineAttData = await _context.AuditLineAttViews.FindAsync(id);
+            // var AuditLineAttData = await _context.AuditLineAttViews.FirstOrDefaultAsync(x => x.LineId == id);
+            var AuditLineAttData = await _context.AuditLineAttViews.Where(a => a.LineId == id).ToListAsync();
+
+            if (AuditLineAttData == null)
+            {
+                return NotFound();
+            }
+
+            return AuditLineAttData;
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(List<IFormFile> files, [FromForm] Int32 LineID, [FromForm] string OriginalName, [FromForm] DateTime CreationDate, [FromForm] string CreatedBy, [FromForm] string Extension)
+        {
+            // string _root = "D:\\Projects\\EAudit\\";
+            string _root = "D:\\NewFlowTest\\App\\";
+            // string _root = _configuration["UploadRootPathProd"];
+            string _folder = _root + "\\Files\\" + LineID + "\\";
+            Directory.CreateDirectory(_folder);
+
             var size = files.Sum(f => f.Length);
             foreach (var file in files)
             {
                 if (file.Length > 0)
                 {
-                    var path = $@"{_folder}\{file.FileName}";
+                    string guidNumber = Guid.NewGuid().ToString();
+                    // var path1 = $@"{_folder}\{file.FileName}";
+                    var path = $@"{_folder}\{guidNumber}.{Extension}";
                     var path_checked = CheckFileExistRename(path);
                     using (var stream = new FileStream(path_checked, FileMode.Create))
                     {
@@ -40,19 +73,32 @@ namespace EAudit.Controllers
                         await stream.FlushAsync();
                     };
 
+
+
+                    _context.AuditAttchments.Add(new AuditAttchment
+                    {
+                        LineId = LineID,
+                        OriginalName = file.FileName,
+                        Name = $@"{guidNumber}.{Extension}",
+                        Path = _folder,
+                        CreationDate = CreationDate,
+                        CreatedBy = CreatedBy
+                    });
+
+                    await _context.SaveChangesAsync();
                 }
             }
 
-            return Ok(new { count = files.Count, size, aa = id });
+
+
+            return Ok(new
+            {
+                count = files.Count,
+                size,
+                aa = LineID
+            });
         }
-        //TODO:尚未測試
-        [HttpPost("A")]
-        public async Task<ActionResult<AuditAttchment>> PostAuditAttchment(AuditAttchment auditAttchment)
-        {
-            _context.AuditAttchments.Add(auditAttchment);
-            await _context.SaveChangesAsync();
-            return auditAttchment;
-        }
+
         private string CheckFileExistRename(string filePath, int seq = 0)
         {
             string checkPath = filePath;
