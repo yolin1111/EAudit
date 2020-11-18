@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using JwtAuthDemo.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace EAudit.Controllers
 {
@@ -23,11 +24,17 @@ namespace EAudit.Controllers
         public async Task<ActionResult<Org>> Post1([FromBody] LoginViewModel login)
         {
             var LoginData = await _context.Orgs.FirstOrDefaultAsync(x => x.LoginId == login.UserName);
-            if (ValidateUser(login))
+            if (LoginData is null)
+            {
+                return BadRequest(new { Status = "Login01 Account or Password Error" });
+                // return BadRequest("帳號或密碼錯誤");
+            }
+            else if (ValidateUser(login))
             {
                 return Ok(LoginData);
             }
-            return NotFound();
+            return BadRequest(new { Status = "Login01 Account or Password Error" });
+            // return BadRequest("帳號或密碼錯誤");
 
         }
         private bool ValidateUser(LoginViewModel login)

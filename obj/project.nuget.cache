@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YynD9h+zWt8kgJTxBwPS5XOeVgfdGVHVcsLb+4eS3b7PIq4e9BU77jtPwHIKUk3+WbESmN25/HdL1QXJvouWTA==",
+  "dgSpecHash": "w3rD3p2ENl2I4ohZgJvNwSyiRrUJogJg4XrdZb5MjmsIF0eWWTMK3m62jWPIpiKInGlQZewt8shBQLWXWbKfOQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\EAudit\\EAudit.csproj",
   "expectedPackageFiles": [
@@ -87,6 +87,9 @@
     "C:\\Users\\tatung\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\njsonschema\\10.2.1\\njsonschema.10.2.1.nupkg.sha512",
+    "C:\\Users\\tatung\\.nuget\\packages\\nlog\\4.7.5\\nlog.4.7.5.nupkg.sha512",
+    "C:\\Users\\tatung\\.nuget\\packages\\nlog.extensions.logging\\1.6.4\\nlog.extensions.logging.1.6.4.nupkg.sha512",
+    "C:\\Users\\tatung\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.3\\nlog.web.aspnetcore.4.9.3.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\nswag.annotations\\13.8.2\\nswag.annotations.13.8.2.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\nswag.aspnetcore\\13.8.2\\nswag.aspnetcore.13.8.2.nupkg.sha512",
     "C:\\Users\\tatung\\.nuget\\packages\\nswag.core\\13.8.2\\nswag.core.13.8.2.nupkg.sha512",

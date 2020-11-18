@@ -38,7 +38,7 @@ namespace EAudit.Controllers
         {
             // var AuditLineAttData = await _context.AuditLineAttViews.FindAsync(id);
             // var AuditLineAttData = await _context.AuditLineAttViews.FirstOrDefaultAsync(x => x.LineId == id);
-            var AuditLineAttData = await _context.AuditLineAttViews.Where(a => a.LineId == id).ToListAsync();
+            var AuditLineAttData = await _context.AuditLineAttViews.Where(a => a.LineId == id).OrderByDescending(b => b.CreationDate).ToListAsync();
 
             if (AuditLineAttData == null)
             {
@@ -65,7 +65,8 @@ namespace EAudit.Controllers
                 {
                     string guidNumber = Guid.NewGuid().ToString();
                     // var path1 = $@"{_folder}\{file.FileName}";
-                    var path = $@"{_folder}\{guidNumber}.{Extension}";
+                    var extension = Path.GetExtension(file.FileName);
+                    var path = $@"{_folder}\{guidNumber}{extension}";
                     var path_checked = CheckFileExistRename(path);
                     using (var stream = new FileStream(path_checked, FileMode.Create))
                     {
@@ -79,7 +80,7 @@ namespace EAudit.Controllers
                     {
                         LineId = LineID,
                         OriginalName = file.FileName,
-                        Name = $@"{guidNumber}.{Extension}",
+                        Name = $@"{guidNumber}{extension}",
                         Path = _folder,
                         CreationDate = CreationDate,
                         CreatedBy = CreatedBy

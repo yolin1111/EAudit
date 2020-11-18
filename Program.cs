@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace EAudit
 {
@@ -13,12 +10,25 @@ namespace EAudit
     {
         public static void Main(string[] args)
         {
+            NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             CreateHostBuilder(args).Build().Run();
         }
-
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseNLog()
+                .Build();
+        }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                // Add_Nlog
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     // var _env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");

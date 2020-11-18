@@ -164,3 +164,7 @@ D:\Projects\EAudit\obj\Release\netcoreapp3.1\staticwebassets\EAudit.StaticWebAss
 D:\Projects\EAudit\obj\Release\netcoreapp3.1\EAudit.dll
 D:\Projects\EAudit\obj\Release\netcoreapp3.1\EAudit.pdb
 D:\Projects\EAudit\obj\Release\netcoreapp3.1\EAudit.genruntimeconfig.cache
+D:\Projects\EAudit\bin\Release\netcoreapp3.1\nlog.config
+D:\Projects\EAudit\bin\Release\netcoreapp3.1\NLog.dll
+D:\Projects\EAudit\bin\Release\netcoreapp3.1\NLog.Extensions.Logging.dll
+D:\Projects\EAudit\bin\Release\netcoreapp3.1\NLog.Web.AspNetCore.dll
