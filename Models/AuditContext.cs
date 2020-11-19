@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using static EAudit.Controllers.FlowTestController;
 
 #nullable disable
 
@@ -36,12 +35,6 @@ namespace EAudit.Models
         public virtual DbSet<GetSEQ> GetSEQs { get; set; }
         public virtual DbSet<GetSEQResult> GetSEQResults { get; set; }
         public virtual DbSet<DropDownData.AuditItemView> GetItemViews { get; set; }
-
-        public virtual DbSet<TestFlow.TestViewModel> TestViewModels { get; set; }
-        public virtual DbSet<TestFlow.TestViewModel2> TestViewModels2 { get; set; }
-        public virtual DbSet<TestFlow.TestViewModel3> TestViewModels3 { get; set; }
-
-        // public virtual DbSet<testaaa> testaaas { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
